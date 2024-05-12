@@ -33,7 +33,7 @@ namespace API.Controllers
         public ActionResult DeleteComm([FromQuery] Guid Id)
         {
             var commToDelete = Comments.FirstOrDefault(s => s.Id == Id);
-            Comments.Remove(commToDelete);
+            if (commToDelete != null) Comments.Remove(commToDelete);
             return Ok();    
         }
     }

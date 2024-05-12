@@ -22,13 +22,3 @@ public class User
         return new User(id, userName, passwordHash, email); 
     }
 }
-/*
-public class Comment
-{
-    public int Id { get; set; }
-    public string Text { get; set; }
-    public string Author { get; set; }
-    // like dislike не важно
-    // avatarky не важно
-    // регистрация 
-*/
