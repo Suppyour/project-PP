@@ -10,31 +10,25 @@ var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
 var configuration = builder.Configuration;
 
-//services.AddApiAuthentication(configuration);
-
+services.AddControllers();
 services.AddEndpointsApiExplorer();
 
-services.AddSwaggerGen();
-
-//services.AddTransient<ExceptionMiddleware>();
-
-services.AddDbContext<LearningDbContext>(options =>
+builder.Services.AddSwaggerGen(opt =>
 {
-    options.UseNpgsql(configuration.GetConnectionString(nameof(LearningDbContext)));
+    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    opt.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });
+
+services.AddAuthentication();
+services.AddAuthorization();
+
 
 services.AddScoped<IJwtProvider, JwtProvider>();
 services.AddScoped<IPasswordHasher, PasswordHasher>();
 
-//services.AddScoped<ICourseRepository, CourseRepository>();
-//services.AddScoped<ILessonsRepository, LessonsRepository>();
 services.AddScoped<IUsersRepository, UsersRepository>();
 
-//services.AddScoped<CoursesService>();
-//services.AddScoped<LessonsService>();
 services.AddScoped<UserService>();
-
-//services.AddAutoMapper(typeof(DataBaseMappings));
 
 var app = builder.Build();
 
@@ -43,7 +37,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-//.UseMiddleware<ExceptionMiddleware>();
 
 app.UseHttpsRedirection();
 
@@ -55,9 +48,8 @@ app.UseCookiePolicy(new CookiePolicyOptions
 });
 
 app.UseAuthentication();
-
 app.UseAuthorization();
 
-//app.AddMappedEndpoints();
+app.MapControllers();
 
 app.Run();

@@ -8,23 +8,19 @@ namespace API.Register;
 public class UserService
 {
     private readonly IUsersRepository _usersRepository;
-    private readonly IPasswordHasher _passwordHasher;
     private readonly IJwtProvider _jwtProvider;
 
     public UserService(
         IUsersRepository usersRepository,
-        IPasswordHasher passwordHasher,
         IJwtProvider jwtProvider)
     {
         _usersRepository = usersRepository;
-        _passwordHasher = passwordHasher;
         _jwtProvider = jwtProvider;
     }
+    
     public async Task Register(string userName, string email, string password)
     {
-        var hashedPassword = _passwordHasher.Generate(password);
-
-        var user = User.Create(Guid.NewGuid(), userName, hashedPassword, email);
+        var user = new User(Guid.NewGuid(), userName, password, email);
 
         await _usersRepository.Add(user);
     }
@@ -33,7 +29,7 @@ public class UserService
     {
         var user = await _usersRepository.GetByEmail(email);
 
-        var result = _passwordHasher.Verify(password, user.PasswordHash);
+        var result = password == user.PasswordHash;
 
         if (result == false)
         {
