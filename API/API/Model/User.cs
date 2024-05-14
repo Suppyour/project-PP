@@ -4,7 +4,11 @@ namespace API;
 
 public class User
 {
-    private User(Guid id, string userName, string passwordHash, string email)
+    public User()
+    {
+    }
+
+    public User(Guid id, string userName, string passwordHash, string email)
     {
         Id = id;
         UserName = userName;
@@ -13,12 +17,7 @@ public class User
     }
 
     public Guid Id { get; set; }
-    public string UserName { get; private set; }
-    public string PasswordHash { get; private set; }
-    public string Email{ get; private set; }
-
-    public static User Create(Guid id, string userName, string passwordHash, string email)
-    {
-        return new User(id, userName, passwordHash, email); 
-    }
+    public string UserName { get; set; }
+    public string PasswordHash { get; set; }
+    public string Email{ get; set; }
 }
