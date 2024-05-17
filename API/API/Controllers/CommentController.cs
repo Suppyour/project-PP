@@ -6,9 +6,15 @@ namespace API.Controllers
 {
     [ApiController]
     [Route("[controller]")] 
-    public class Test2Controller : ControllerBase
+    public class CommentController : ControllerBase
     {
-        
+        /// <summary>
+        ///  Тут должен быть пост коммента
+        /// </summary>
+        /// <remarks>
+        ///  Тут эээ ну что то должно же быть тоже
+        /// </remarks>
+        /// <returns></returns>
         public static List<User> Comments = new();
         
         [HttpPost("")]
@@ -18,10 +24,10 @@ namespace API.Controllers
             return Ok();
         }
         /// <summary>
-        ///  коммент сумм
+        ///  Тут сервак должен принять этот пост
         /// </summary>
         /// <remarks>
-        ///  коммент ремарок
+        ///  Тут эээ ну что то должно же быть тоже
         /// </remarks>
         /// <returns></returns>
         [HttpGet("")]
@@ -29,6 +35,13 @@ namespace API.Controllers
         {
             return Ok(Comments);
         }
+        /// <summary>
+        ///  Тут сервак должен удалить пост по ID который его оставил
+        /// </summary>
+        /// <remarks>
+        ///  Тут эээ ну что то должно же быть тоже
+        /// </remarks>
+        /// <returns></returns>
         [HttpDelete("")]
         public ActionResult DeleteComm([FromQuery] Guid Id)
         {

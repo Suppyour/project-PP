@@ -25,7 +25,7 @@ public class UserService
         await _usersRepository.Add(user);
     }
 
-    public async Task<string> Login(string email, string password) //здесь регистрация 10:00
+    public async Task<string> Login(string email, string password)
     {
         var user = await _usersRepository.GetByEmail(email);
 

@@ -9,7 +9,7 @@ public class UsersRepository : IUsersRepository
 {
     private static readonly ConcurrentDictionary<Guid, User> Users = new();
     private static readonly ConcurrentDictionary<string, Guid> IdsByEmail = new();
-    
+
     public async Task Add(User user)
     {
         Users.TryAdd(user.Id, user);
