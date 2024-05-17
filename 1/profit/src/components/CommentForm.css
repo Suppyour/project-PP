@@ -1,0 +1,12 @@
+.text-area {
+    background-color: #3A3A3A;
+    width: 100%;
+    border-color: #FFFFFF;
+}
+
+.post-comment {
+    background-color: #ff8420;
+    border-radius: 10px;
+    padding: 5px;
+    font-size: medium;
+}
