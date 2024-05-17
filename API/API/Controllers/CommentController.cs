@@ -17,7 +17,7 @@ namespace API.Controllers
         /// </remarks>
         /// <returns></returns>
         [HttpPost("")]
-        public ActionResult AddComm([FromBody] User user)
+        public ActionResult AddComm([FromBody] User user )
         {
             Comments.Add(user);
             return Ok();

@@ -4,10 +4,6 @@ namespace API;
 
 public class User
 {
-    public User()
-    {
-    }
-
     public User(Guid id, string userName, string passwordHash, string email)
     {
         Id = id;
@@ -20,4 +16,6 @@ public class User
     public string UserName { get; set; }
     public string PasswordHash { get; set; }
     public string Email{ get; set; }
+    
+    public string TextToComm { get; set; }
 }
