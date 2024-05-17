@@ -8,6 +8,7 @@ namespace API.Controllers
     [Route("[controller]")] 
     public class CommentController : ControllerBase
     {
+        public static List<User> Comments = new();
         /// <summary>
         ///  Тут должен быть пост коммента
         /// </summary>
@@ -15,8 +16,6 @@ namespace API.Controllers
         ///  Тут эээ ну что то должно же быть тоже
         /// </remarks>
         /// <returns></returns>
-        public static List<User> Comments = new();
-        
         [HttpPost("")]
         public ActionResult AddComm([FromBody] User user)
         {
@@ -51,4 +50,3 @@ namespace API.Controllers
         }
     }
 }
-// comm for fun
