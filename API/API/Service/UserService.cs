@@ -25,7 +25,7 @@ public class UserService
         await _usersRepository.Add(user);
     }
 
-    public async Task<string> Login(string email, string password)
+    public async Task<LoginResponse> Login(string email, string password)
     {
         var user = await _usersRepository.GetByEmail(email);
 
@@ -37,8 +37,15 @@ public class UserService
         }
 
         var token = _jwtProvider.GenerateToken(user);
-        
-        return token;
+
+        LoginResponse loginResponse = new(){UserName = user.UserName, Token = token};
+        return loginResponse;
+    }
+
+    public class LoginResponse
+    {
+        public string Token { get; set; }
+        public string UserName { get; set;}
     }
 }
 
