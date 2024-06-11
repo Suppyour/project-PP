@@ -2,13 +2,13 @@ namespace API;
 
 public class Post
 {
-    public Post (Guid id, User user, string text)
+    public Post (Guid id, string user, int like)
     {
         Id = id;
         User = user;
-        Text = text;
+        Like = like;
     }
-    public User User { get; set; }
-    public string Text { get; set; }
+    public string User { get; set; }
     public Guid Id { get; set; }
+    public int Like { get; set; }
 }
